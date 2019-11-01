@@ -1,9 +1,10 @@
 const app = require('../src/app')
 
+//Add tests
 describe('App', () => {
-  it('POST / responds with 200 containing "POST request received."', () => {
+/*   it('GET / responds with 200 containing "GET request received."', () => {
     return supertest(app)
-      .post('/')
-      .expect(200, 'POST request received.')
-  })
+      .get('/')
+      .expect(200, 'GET request received.')
+  }) */
 })

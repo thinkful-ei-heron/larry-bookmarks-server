@@ -1,7 +1,8 @@
 const express = require('express');
 const uuid = require('uuid/v4');
+const validator = require('validator');
 const logger = require('../logger');
-const { bookmarks, lists } = require('../store');
+const { bookmarks } = require('../store');
 
 const bookmarkRouter = express.Router();
 const bodyParser = express.json();
@@ -34,12 +35,20 @@ bookmarkRouter
         .send('Invalid data');
     }
 
+    if (!validator.isURL(url)) {
+      logger.error(`A Valid URL is Required`);
+      return res
+        .status(400)
+        .send('Invalid data');
+    }    
+
     if (!desc) {
       logger.error(`A Description is Required`);
       return res
         .status(400)
         .send('Invalid data');
-    }    
+    }
+
     let id = uuid();
     let bookmark = {
       id: id,
@@ -55,8 +64,7 @@ bookmarkRouter
       .status(201)
       .location(`http://localhost:8000/bookmarks/${id}`)
       .json(bookmark);
- 
-  })
+   })
 
 bookmarkRouter
   .route('/bookmarks/:id')
@@ -72,31 +80,22 @@ bookmarkRouter
 
     res.json(bookmark);
   })
-/*  .delete((req, res) => {
+  .delete((req, res) => {
     const { id } = req.params;
 
-    const cardIndex = cards.findIndex(c => c.id == id);
-    if (cardIndex === -1) {
-      logger.error(`Card with id ${id} not found.`);
+    const bookmarkIndex = bookmarks.findIndex(b => b.id == id);
+    if (bookmarkIndex === -1) {
+      logger.error(`Bookmark with id ${id} not found.`);
       return res
         .status(404)
         .send('Not found');
     }
-
-    //remove card from lists
-    //assume cardIds are not duplicated in the cardIds array
-    lists.forEach(list => {
-      const cardIds = list.cardIds.filter(cid => cid !== id);
-      list.cardIds = cardIds;
-    });
-
-    cards.splice(cardIndex, 1);
-
-    logger.info(`Card with id ${id} deleted.`);
+    bookmarks.splice(bookmarkIndex, 1);
+    logger.info(`Bookmark with id ${id} deleted.`);
 
     res
       .status(204)
       .end();
-  }) */
+  });
 
 module.exports = bookmarkRouter

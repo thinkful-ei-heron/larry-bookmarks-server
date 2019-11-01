@@ -3,7 +3,6 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 const helmet = require('helmet');
-const winston = require('winston');
 
 const { NODE_ENV } = require('./config');
 const logger = require('./logger');
@@ -31,11 +30,6 @@ app.use(function validateBearerToken(req, res, next) {
 });
 
 app.use(bookmarkRouter);
-
-app.post('/', (req, res) => {
-  res
-    .send('POST request received.');
-});
 
 app.use(function errorHandler(error, req, res, next) {
   let response
