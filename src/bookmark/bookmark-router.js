@@ -10,47 +10,59 @@ bookmarkRouter
   .route('/bookmarks')
   .get((req, res) => {
     res.json(bookmarks);
-  });
-/*   .post(bodyParser, (req, res) => {
-    const { title, content } = req.body;
-
+  })
+  .post(bodyParser, (req, res) => {
+    const { title, rating, url, desc } = req.body;
     if (!title) {
-      logger.error(`Title is required`);
+      logger.error(`A Title is Required`);
       return res
         .status(400)
         .send('Invalid data');
     }
 
-    if (!content) {
-      logger.error(`Content is required`);
+    if (!rating) {
+      logger.error(`A Rating is Required`);
+      return res
+        .status(400)
+        .send('Invalid data');
+    } 
+
+    if (!url) {
+      logger.error(`A URL is Required`);
       return res
         .status(400)
         .send('Invalid data');
     }
 
-    const id = uuid();
-    const card = {
-      id,
-      title,
-      content
-    };
-
-    cards.push(card);
-    logger.info(`Card with id ${id} created`);
+    if (!desc) {
+      logger.error(`A Description is Required`);
+      return res
+        .status(400)
+        .send('Invalid data');
+    }    
+    let id = uuid();
+    let bookmark = {
+      id: id,
+      title: title,
+      rating: rating,
+      url: url,
+      desc: desc 
+    }
+    bookmarks.push(bookmark);
+    logger.info(`Bookmark with id ${id} created`);
 
     res
       .status(201)
-      .location(`http://localhost:8000/card/${id}`)
-      .json(card);
+      .location(`http://localhost:8000/bookmarks/${id}`)
+      .json(bookmark);
  
-  }) */
+  })
 
 bookmarkRouter
   .route('/bookmarks/:id')
   .get((req, res) => {
     const { id } = req.params;
     const bookmark = bookmarks.find(b => b.id == id);
-
     if (!bookmark) {
       logger.error(`Bookmark with id ${id} not found.`);
       return res

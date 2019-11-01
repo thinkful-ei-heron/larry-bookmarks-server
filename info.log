@@ -1,3 +1,10 @@
 {"message":"Unauthorized request to path: /","level":"error"}
 {"message":"Unauthorized request to path: /","level":"error"}
 {"message":"Bookmark with id 1 not found.","level":"error"}
+{"message":"A Bookmark is Required","level":"error"}
+{"message":"A Bookmark is Required","level":"error"}
+{"message":"A Bookmark is Required","level":"error"}
+{"message":"A Bookmark is Required","level":"error"}
+{"message":"Bookmark with id 97c2b981-78d0-4041-a131-f0caf3bad3c5 created","level":"info"}
+{"message":"Bookmark with id f089dbe5-7f09-4c03-aa2f-b7611c010b04 created","level":"info"}
+{"message":"Bookmark with id 84b1fcf1-139e-4ed9-9542-8b77377bc9a1 created","level":"info"}
