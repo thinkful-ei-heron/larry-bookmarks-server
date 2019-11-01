@@ -28,6 +28,16 @@ bookmarkRouter
         .send('Invalid data');
     } 
 
+    if (rating) {
+      let num = parseInt(rating);
+      if (isNaN(num) || num < 0 || num > 5) {
+        logger.error(`A Numerical Rating Between 0 and 5 is Required`);
+        return res
+          .status(400)
+          .send('Invalid data');
+      }
+    } 
+
     if (!url) {
       logger.error(`A URL is Required`);
       return res

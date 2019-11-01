@@ -20,3 +20,6 @@
 {"message":"Bookmark with id f48cd6fc-4415-4f80-9841-6c38222280cb deleted.","level":"info"}
 {"message":"Bookmark with id f48cd6fc-4415-4f80-9841-6c38222280cb not found.","level":"error"}
 {"message":"Unauthorized request to path: /","level":"error"}
+{"message":"A Numberical Rating Between 0 and 5 is Required","level":"error"}
+{"message":"A Numberical Rating Between 0 and 5 is Required","level":"error"}
+{"message":"Bookmark with id 2f936cf3-c389-45a4-9528-07061e6849ca created","level":"info"}
