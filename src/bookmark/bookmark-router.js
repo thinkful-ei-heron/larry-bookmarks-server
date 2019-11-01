@@ -44,23 +44,23 @@ bookmarkRouter
       .json(card);
  
   }) */
-/* 
-cardRouter
-  .route('/card/:id')
+
+bookmarkRouter
+  .route('/bookmarks/:id')
   .get((req, res) => {
     const { id } = req.params;
-    const card = cards.find(c => c.id == id);
+    const bookmark = bookmarks.find(b => b.id == id);
 
-    if (!card) {
-      logger.error(`Card with id ${id} not found.`);
+    if (!bookmark) {
+      logger.error(`Bookmark with id ${id} not found.`);
       return res
         .status(404)
-        .send('Card Not Found');
+        .send('404 Not Found');
     }
 
-    res.json(card);
+    res.json(bookmark);
   })
-  .delete((req, res) => {
+/*  .delete((req, res) => {
     const { id } = req.params;
 
     const cardIndex = cards.findIndex(c => c.id == id);
@@ -85,6 +85,6 @@ cardRouter
     res
       .status(204)
       .end();
-  })
- */
+  }) */
+
 module.exports = bookmarkRouter
